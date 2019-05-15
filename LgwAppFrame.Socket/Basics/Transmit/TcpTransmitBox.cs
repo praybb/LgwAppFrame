@@ -6,7 +6,7 @@ namespace LgwAppFrame.SocketHelper
     /// <summary>
     /// 传输用的盒子
     /// </summary>
-    internal class TransmitBox : TransmitData
+    internal class TcpTransmitBox : TransmitData
     {
         #region 连接是否正常 ConnectOk
         /// <summary>
@@ -43,7 +43,7 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         /// <param name="socket">Socket</param>
         /// <param name="bufferSize">缓冲区大小</param>
-        internal TransmitBox(Socket socket, int bufferSize) : base(socket, bufferSize)
+        internal TcpTransmitBox(Socket socket, int bufferSize) : base(socket, bufferSize)
         {
         }
     }

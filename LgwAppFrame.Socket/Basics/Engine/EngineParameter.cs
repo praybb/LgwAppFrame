@@ -289,7 +289,7 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         /// <param name="stateOne">当前的连接属性</param>
         /// <param name="reciverByte">收到的数据</param>
-        internal void UnpackStickyData(TransmitBox stateOne, byte[] reciverByte)
+        internal void UnpackStickyData(TcpTransmitBox stateOne, byte[] reciverByte)
         {
             //设置心跳包
             stateOne.HeartTime = DateTime.Now;
@@ -309,12 +309,12 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         /// <param name="stateOne">传输用的盒子</param>
         /// <param name="statecode">收到的数据</param>
-        internal void CategorizeData(TransmitBox stateOne, DataModel statecode)
+        internal void CategorizeData(TcpTransmitBox stateOne, DataModel statecode)
         {
+
             if (statecode == null || stateOne == null)
                 return;
             //说明是验证类型；抛给验证暗号处理中心，如果不是抛给普通数据处理
-            //因数据包验证类型比较多,这里
             if (statecode.State == CipherCode._verificationCode)
             {
                 byte haveDate = EncDecVerification.DecryptVerification(statecode.DateByte);
@@ -322,23 +322,34 @@ namespace LgwAppFrame.SocketHelper
             }
             else
             {
-                DataModel stateCode = null;
-                switch (statecode.State)
-                {
-                    case CipherCode._commonCode://普通数据信息;抛给普通Code去处理
-                        stateCode = EncryptionDecrypt.deciphering(statecode.DateByte, stateOne);
-                        CommonCodeManage(stateOne, stateCode);
-                        break;
-                    case CipherCode._bigDateCode://抛给分包Code去处理
-                        stateCode = EncDecSeparateDate.FileDecrypt(statecode.DateByte, stateOne);//返回一个带回复数据的模型                    
-                        CommonCodeManage(stateOne, stateCode);//发送出去
-                        break;
-                    case CipherCode._fileCode://抛给文件处理器去处理；如果返回null就不用发送了
-                        byte[] haveDate = FileStart.ReceiveDateTO(statecode.DateByte, stateOne);
-                        if (haveDate != null)
-                            Send(stateOne, haveDate);
-                        break;
-                }
+                codeManage(stateOne, statecode);
+            }
+        }
+        /// <summary>
+        /// 数据第二层分配中心；把数据归类
+        /// </summary>
+        /// <param name="stateOne">连接属性</param>
+        /// <param name="statecode">收到的数据</param>
+        internal void codeManage(TransmitData stateOne, DataModel statecode)
+        {
+            if (statecode == null || stateOne == null)
+                return;
+            DataModel stateCode = null;
+            switch (statecode.State)
+            {
+                case CipherCode._commonCode://普通数据信息;抛给普通Code去处理
+                    stateCode = EncryptionDecrypt.deciphering(statecode.DateByte, stateOne);
+                    CommonCodeManage(stateOne, stateCode);
+                    break;
+                case CipherCode._bigDateCode://抛给分包Code去处理
+                    stateCode = EncDecSeparateDate.FileDecrypt(statecode.DateByte, stateOne);//返回一个带回复数据的模型                    
+                    CommonCodeManage(stateOne, stateCode);//发送出去
+                    break;
+                case CipherCode._fileCode://抛给文件处理器去处理；如果返回null就不用发送了
+                    byte[] haveDate = FileStart.ReceiveDateTO(statecode.DateByte, stateOne);
+                    if (haveDate != null)
+                        Send(stateOne, haveDate);
+                    break;
             }
         }
         #endregion
@@ -381,7 +392,7 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         /// <param name="stateOne">TcpState</param>
         /// <param name="haveDate">字节</param>
-        virtual internal void VerificationCodeManage(TransmitBox stateOne, byte haveDate)
+        virtual internal void VerificationCodeManage(TcpTransmitBox stateOne, byte haveDate)
         { }
         #endregion
 

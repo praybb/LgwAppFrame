@@ -10,7 +10,7 @@ namespace LgwAppFrame.SocketHelper
     {
 
         #region 基本属性区块
-        private TransmitBox stateOne = null;
+        private TcpTransmitBox stateOne = null;
         private Thread HeartThread = null;
         private Thread StartThread = null;
         
@@ -117,7 +117,7 @@ namespace LgwAppFrame.SocketHelper
         private void AcceptCallback(IAsyncResult ar)
         {
             Socket socket = (Socket)ar.AsyncState;
-            stateOne = new TransmitBox(socket, BufferSize);
+            stateOne = new TcpTransmitBox(socket, BufferSize);
             try
             {
                 socket.EndConnect(ar);
@@ -252,7 +252,7 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         /// <param name="stateOne">TcpState</param>
         /// <param name="haveDate">byte</param>
-        override internal void VerificationCodeManage(TransmitBox stateOne, byte haveDate)
+        override internal void VerificationCodeManage(TcpTransmitBox stateOne, byte haveDate)
         {
             if (stateOne == null)
                 return;

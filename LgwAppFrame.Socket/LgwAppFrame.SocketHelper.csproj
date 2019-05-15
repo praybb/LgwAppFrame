@@ -57,6 +57,7 @@
     <Compile Include="Basics\FileBase\FileSend\IFileSendMust.cs" />
     <Compile Include="Basics\FileBase\FileSend\SendFile.cs" />
     <Compile Include="Basics\FileBase\FileStart.cs" />
+    <Compile Include="Basics\Package\UdpPortSetGet.cs" />
     <Compile Include="Basics\Transmit\TransmitFile.cs" />
     <Compile Include="Basics\IPackageProcess.cs" />
     <Compile Include="Basics\Package\ByteToData.cs" />
@@ -67,8 +68,9 @@
     <Compile Include="Basics\Package\EncDecVerification.cs" />
     <Compile Include="Basics\Package\ReceiveDate.cs" />
     <Compile Include="Basics\Package\StickPackage.cs" />
-    <Compile Include="Basics\Transmit\TransmitBox.cs" />
+    <Compile Include="Basics\Transmit\TcpTransmitBox.cs" />
     <Compile Include="Basics\Transmit\TransmitData.cs" />
+    <Compile Include="Basics\Transmit\UdpTransmitBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Basics\Engine\EngineParameter.cs" />
     <Compile Include="Basics\Engine\IEngineParameter.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="TcpClient\SocketClient.cs" />
     <Compile Include="TcpServer\ISocketServer.cs" />
     <Compile Include="TcpServer\SocketServer.cs" />
+    <Compile Include="Udb\ISocketUdb.cs" />
+    <Compile Include="Udb\SocketUdb.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

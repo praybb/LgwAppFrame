@@ -13,7 +13,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
     {
         #region 基本属性区块
         //服务器上用来与各客户端通信的盒子
-        private List<TransmitBox> state = null;
+        private List<TcpTransmitBox> state = null;
         /// <summary>
         /// 服务器套
         /// </summary>
@@ -59,7 +59,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
                 if (state == null || state.Count == 0)
                     return null;
                 List<IPEndPoint> IpEndPoint = new List<IPEndPoint>();
-                foreach (TransmitBox stateOne in state)
+                foreach (TcpTransmitBox stateOne in state)
                 {
                     IpEndPoint.Add(stateOne.IpEndPoint);
                 }
@@ -74,7 +74,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         {
             Port = port;
             if (state == null)
-                state = new List<TransmitBox>();
+                state = new List<TcpTransmitBox>();
         }
         #endregion
         #region 启动以及接收客户端区块
@@ -111,7 +111,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="ar">TcpClient</param>
         private void AcceptCallback(IAsyncResult ar)
         {
-            TransmitBox stateOne = null;
+            TcpTransmitBox stateOne = null;
             try
             {
                 listener.BeginAccept(new AsyncCallback(AcceptCallback), listener);
@@ -125,7 +125,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
             {
                 Socket Listener = (Socket)ar.AsyncState;
                 Socket handler = listener.EndAccept(ar);
-                stateOne = new TransmitBox(handler, BufferSize);
+                stateOne = new TcpTransmitBox(handler, BufferSize);
                 Thread threadLongin = new Thread(loginInitialization);
                 threadLongin.IsBackground = true;
                 threadLongin.Start(stateOne);//启动客户验证系统
@@ -142,7 +142,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="ar"></param>
         private void ReadCallback(IAsyncResult ar)
         {
-            TransmitBox stateOne = (TransmitBox)ar.AsyncState;
+            TcpTransmitBox stateOne = (TcpTransmitBox)ar.AsyncState;
             Socket handler = stateOne.WorkSocket;
             try
             {
@@ -168,7 +168,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// </summary>
         /// <param name="stateOne">TcpState</param>
         /// <param name="haveDate">代码</param>
-        override internal void VerificationCodeManage(TransmitBox stateOne, byte haveDate)
+        override internal void VerificationCodeManage(TcpTransmitBox stateOne, byte haveDate)
         {
             if (stateOne == null)
                 return;
@@ -206,7 +206,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
                 int i = Ex.Message.IndexOf("远程主机强迫关闭了一个现有的连接");
                 if (i != -1)
                 {
-                    TransmitBox stateOne = IPEndPointToState(stateBase.IpEndPoint);
+                    TcpTransmitBox stateOne = IPEndPointToState(stateBase.IpEndPoint);
                     socketRemove(stateOne, Ex.Message);
                 }
             }
@@ -267,7 +267,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// </summary>
         /// <param name="stateOne">TcpState</param>
         /// <param name="str">原因</param>
-        private void socketRemove(TransmitBox stateOne, string str)
+        private void socketRemove(TcpTransmitBox stateOne, string str)
         {
             if (stateOne == null)
                 return;
@@ -286,7 +286,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="stateOne1">TcpState</param>
         private void loginInitialization(object stateOne1)
         {
-            TransmitBox stateOne = (TransmitBox)stateOne1;
+            TcpTransmitBox stateOne = (TcpTransmitBox)stateOne1;
             if (ClientNumber >= _clientMax)
             {
                 EngineLog("客户端数量已达到上限!");//记录
@@ -318,7 +318,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// 客户端完全登录成功之后要处理的事情
         /// </summary>
         /// <param name="stateOne">TcpState</param>
-        private void loginSuccess(TransmitBox stateOne)
+        private void loginSuccess(TcpTransmitBox stateOne)
         {
             stateOne.ConnectOk = true;
             state.Add(stateOne);
@@ -352,7 +352,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// </summary>
         public void clientAllClose()
         {
-            foreach (TransmitBox stateo in state)
+            foreach (TcpTransmitBox stateo in state)
             {
                 socketRemove(stateo, "服务器关闭所有的客户端");
             }
@@ -361,7 +361,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// 发送代码的形式服务器强制关闭一个客户端
         /// </summary>
         /// <param name="stateOne">TcpState</param>
-        private void clientClose(TransmitBox stateOne)
+        private void clientClose(TcpTransmitBox stateOne)
         {
             if (stateOne == null || ClientNumber == 0)
                 return;
@@ -374,7 +374,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="ipEndPoint">IPEndPoint</param>
         public void clientClose(IPEndPoint ipEndPoint)
         {
-            TransmitBox stateOne = IPEndPointToState(ipEndPoint);
+            TcpTransmitBox stateOne = IPEndPointToState(ipEndPoint);
             clientClose(stateOne);
         }
         /// <summary>
@@ -384,7 +384,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <returns>bool</returns>
         public bool clientCheck(IPEndPoint ipEndPoint)
         {
-            TransmitBox stateOne = IPEndPointToState(ipEndPoint);
+            TcpTransmitBox stateOne = IPEndPointToState(ipEndPoint);
             if (stateOne == null)
                 return false;
             return true;
@@ -396,7 +396,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="data">文本数据</param>
         public void sendMessage(IPEndPoint ipEndPoint, string data)
         {
-            TransmitBox stateOne = IPEndPointToState(ipEndPoint);
+            TcpTransmitBox stateOne = IPEndPointToState(ipEndPoint);
             sendMessage(stateOne, data);
         }
         /// <summary>
@@ -406,7 +406,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="data">图片的数据</param>
         public void sendMessage(IPEndPoint ipEndPoint, byte[] data)
         {
-            TransmitBox stateOne = IPEndPointToState(ipEndPoint);
+            TcpTransmitBox stateOne = IPEndPointToState(ipEndPoint);
             sendMessage(stateOne, data);
         }
         /// <summary>
@@ -417,7 +417,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <returns>返回文件标签；可以控制文件的任何事情</returns>
         public int SendFile(IPEndPoint ipEndPoint, string fileName)
         {
-            TransmitBox stateOne;
+            TcpTransmitBox stateOne;
             try
             {
                 stateOne = IPEndPointToState(ipEndPoint);
@@ -437,7 +437,7 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// <param name="fileLable">文件标签</param>
         public void ContinueFile(IPEndPoint ipEndPoint, int fileLable)
         {
-            TransmitBox stateOne;
+            TcpTransmitBox stateOne;
             try
             {
                 stateOne = IPEndPointToState(ipEndPoint);
@@ -454,11 +454,11 @@ namespace LgwAppFrame.SocketHelper.TcpServer
         /// </summary>
         /// <param name="ipEndPoint">IPEndPoint</param>
         /// <returns>TcpState</returns>
-        private TransmitBox IPEndPointToState(IPEndPoint ipEndPoint)
+        private TcpTransmitBox IPEndPointToState(IPEndPoint ipEndPoint)
         {
             try
             {
-                return state.Find(delegate (TransmitBox state1) { return state1.IpEndPoint == ipEndPoint; });
+                return state.Find(delegate (TcpTransmitBox state1) { return state1.IpEndPoint == ipEndPoint; });
             }
             catch { return null; }
         }
