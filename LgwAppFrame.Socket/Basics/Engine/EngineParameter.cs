@@ -402,5 +402,30 @@ namespace LgwAppFrame.SocketHelper
             }
         }
         #endregion
+
+        #region 日志记录
+        private string _fileLog = "";//记录地址，如果为空表示不记录
+                                     /// <summary>
+                                     /// 日志文件目录地址；为空表示不记录
+                                     /// </summary>
+        public string FileLog
+        {
+            get { return _fileLog; }
+            set { _fileLog = value; }
+        }
+       
+        /// <summary>
+        /// 日志记录
+        /// </summary>
+        /// <param name="str">信息</param>
+        internal virtual void EngineLog(string str)
+        {
+            try
+            {
+                CommonMethod.FileOperate(FileLog, str);
+            }
+            catch { FileLog = ""; }
+        }
+        #endregion
     }
 }
