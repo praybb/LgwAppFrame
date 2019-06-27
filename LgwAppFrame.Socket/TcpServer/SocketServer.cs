@@ -1,14 +1,16 @@
 ﻿using LgwAppFrame.SocketHelper.Basics;
 using LgwAppFrame.SocketHelper.Basics.Package;
-using LgwAppFrame.SocketHelperHelper;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace LgwAppFrame.SocketHelper.TcpServer
+namespace LgwAppFrame.SocketHelper
 {
+    /// <summary>
+    /// 服务器
+    /// </summary>
     public  class SocketServer : EngineParameter, ISocketServer
     {
         #region 基本属性区块

@@ -5,7 +5,7 @@ using System.Net;
 using System.IO;
 using System.Windows.Forms;
 
-namespace LgwAppFrame.SocketHelperHelper
+namespace LgwAppFrame.SocketHelper
 {
     /// <summary>
     /// 不带参数的委托

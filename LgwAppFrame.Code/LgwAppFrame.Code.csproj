@@ -42,10 +42,59 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\Configs.cs" />
+    <Compile Include="Extend\Ext.Convert.cs" />
+    <Compile Include="Extend\Ext.DateTime.cs" />
+    <Compile Include="Extend\Ext.enum.cs" />
+    <Compile Include="Extend\Ext.ExpressionVisitor.cs" />
+    <Compile Include="Extend\Ext.Format.cs" />
+    <Compile Include="Extend\Ext.string.cs" />
+    <Compile Include="Extend\Ext.Unicode.cs" />
+    <Compile Include="Extend\ExtLinq.cs" />
+    <Compile Include="Extend\ExtLinq.SortBy.cs" />
+    <Compile Include="Extend\ExtList.Comparint.cs" />
+    <Compile Include="Extend\ExtList.cs" />
+    <Compile Include="Extend\ExtTable.cs" />
     <Compile Include="File\FileHelper.cs" />
+    <Compile Include="HighConcurrencyTest\HighConcurrencyTest.cs" />
+    <Compile Include="Img\ImgHelper.cs" />
+    <Compile Include="Invoker\FastMethodInvoker.cs" />
+    <Compile Include="Invoker\InvokerHelper.cs" />
+    <Compile Include="Json\Json.cs" />
+    <Compile Include="Js\Js.cs" />
+    <Compile Include="Log\Log.cs" />
+    <Compile Include="Mail\MailHelper.cs" />
+    <Compile Include="Net\HttpMethods.cs" />
+    <Compile Include="Net\Net.cs" />
+    <Compile Include="Net\NtpHelper.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="OCR\OCRHelper.cs" />
+    <Compile Include="Pinyin\Pinyin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\DESEncrypt.cs" />
+    <Compile Include="Security\Md5Helper.cs" />
+    <Compile Include="Validate\Validate.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Js\gettk.js" />
+    <Content Include="Js\Interop.MSScriptControl.dll" />
+    <Content Include="obj\Debug\LgwAppFrame.Code.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\LgwAppFrame.Code.dll" />
+    <Content Include="obj\Debug\LgwAppFrame.Code.pdb" />
+    <Content Include="OCR\AspriseOCR.dll" />
+    <Content Include="OCR\DevIL.dll" />
+    <Content Include="OCR\ILU.dll" />
+    <Content Include="Pinyin\ChnCharInfo.dll" />
+    <Content Include="Pinyin\NPinyin.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\LgwAppFrame.Code.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,8 +8,9 @@ namespace LgwAppFrame.SocketHelper.Basics.Package
   /// <remarks>用于粘包的加密与解密工作</remarks>
     internal class StickPackage
     {
+        #region 对TCP发送进行粘包加密
         /// <summary>
-        /// 对TCP发送进行粘包加密；
+        /// 对TCP发送进行粘包加密
         /// </summary>
         /// <param name="sendDate">要加密的数据</param>
         /// <returns>加密之后的数据为：粘包代码4byte+数据包长度4byte</returns>
@@ -23,6 +24,8 @@ namespace LgwAppFrame.SocketHelper.Basics.Package
             sendDate.CopyTo(dateAll, 8);
             sendDate = dateAll;
         }
+        #endregion
+        #region 对TCP粘包数据进行解密；把所有完整的包通过集合形式返回给客户
         /// <summary>
         /// 对TCP粘包数据进行解密；把所有完整的包通过集合形式返回给客户
         /// </summary>
@@ -53,6 +56,8 @@ namespace LgwAppFrame.SocketHelper.Basics.Package
             }
             return listDate;
         }
+        #endregion
+        #region 解密数组
         /// <summary>
         /// 解密数组
         /// </summary>
@@ -116,5 +121,6 @@ namespace LgwAppFrame.SocketHelper.Basics.Package
 
             return haveDate;
         }
+        #endregion
     }
 }

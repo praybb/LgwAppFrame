@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
-using LgwAppFrame.SocketHelper;
 using LgwAppFrame.SocketHelper.Basics.Package;
 
-namespace LgwAppFrame.SocketHelper.Udb
+namespace LgwAppFrame.SocketHelper
 {
     public class SocketUdb : EngineParameter,ISocketUdb
     { 
@@ -17,7 +13,7 @@ namespace LgwAppFrame.SocketHelper.Udb
     /// <summary>
     /// 启动Udp系统,端口号在Port属性里设置，否则由系统自动分配可用端口号
     /// </summary>
-    public void StartEngine()
+    override public void StartEngine()
     {
         if (EngineStart)
             return;

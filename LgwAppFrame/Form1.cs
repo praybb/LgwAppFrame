@@ -2,9 +2,9 @@
 
 namespace LgwAppFrame
 {
-    public partial class Form1 : Form
+    public partial class SocketClient : Form
     {
-        public Form1()
+        public SocketClient()
         {
             InitializeComponent();
         }

@@ -1,5 +1,4 @@
-﻿using LgwAppFrame.SocketHelperHelper;
-using System.Net;
+﻿using System.Net;
 
 namespace LgwAppFrame.SocketHelper
 {
@@ -31,6 +30,7 @@ namespace LgwAppFrame.SocketHelper
         /// </summary>
         event EventDelegate<IPEndPoint> dateSuccess;
         #endregion
+        #region 缓冲区大小
         /// <summary>
         /// 缓冲区大小；默认为1024字节；不影响最大发送量，如果内存够大或经常发送大数据可以适当加大缓冲区
         /// 大小；从而可以提高发送速度；否则会自动分包发送，到达对方自动组包；UDP这里不超过65507;
@@ -40,6 +40,7 @@ namespace LgwAppFrame.SocketHelper
             get;
             set;
         }
+        #endregion
         #region 引擎状态
         /// <summary>
         /// 引擎是否已经启动;

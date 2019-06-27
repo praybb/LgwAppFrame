@@ -1,5 +1,4 @@
-﻿using LgwAppFrame.SocketHelperHelper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 
 namespace LgwAppFrame.SocketHelper

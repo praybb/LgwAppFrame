@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using LgwAppFrame.SocketHelper.Basics.Package;
-using LgwAppFrame.SocketHelperHelper;
 using LgwAppFrame.SocketHelper.Basics;
 
 namespace LgwAppFrame.SocketHelper

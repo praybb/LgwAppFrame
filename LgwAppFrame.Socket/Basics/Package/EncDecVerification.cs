@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace LgwAppFrame.SocketHelper.Basics.Package
+﻿namespace LgwAppFrame.SocketHelper.Basics.Package
 {
     /// <summary>
     ///  验证类型暗号处理中心

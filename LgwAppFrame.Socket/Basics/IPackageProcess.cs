@@ -1,6 +1,8 @@
 ﻿namespace LgwAppFrame.SocketHelper
 {
-    public  interface IPackageProcess
+    public interface IPackageProcess
     {
-        void fe() { }
+        //  void fe() { }
     }
+
+}

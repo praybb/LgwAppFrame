@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Basics\Engine\EngineParameter.cs" />
     <Compile Include="Basics\Engine\IEngineParameter.cs" />
+    <Compile Include="SocketStart.cs.cs" />
     <Compile Include="TcpClient\ISocketClient.cs" />
     <Compile Include="TcpClient\SocketClient.cs" />
     <Compile Include="TcpServer\ISocketServer.cs" />

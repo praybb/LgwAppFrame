@@ -1,6 +1,6 @@
 ﻿namespace LgwAppFrame
 {
-    partial class Form1
+    partial class SocketClient
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // SocketClient
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "SocketClient";
+            this.Text = "Client";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

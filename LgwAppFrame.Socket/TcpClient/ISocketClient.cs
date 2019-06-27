@@ -1,6 +1,4 @@
-﻿using LgwAppFrame.SocketHelperHelper;
-
-namespace LgwAppFrame.SocketHelper
+﻿namespace LgwAppFrame.SocketHelper
 {
     /// <summary>
     /// 一个客户端的接口所有方法和事件都在里面

@@ -1,7 +1,4 @@
 ﻿
-
-using LgwAppFrame.SocketHelperHelper;
-
 namespace LgwAppFrame.SocketHelper.Basics
 {
     internal class FileMustBase : IFileMustBase

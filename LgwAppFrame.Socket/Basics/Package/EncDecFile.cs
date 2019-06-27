@@ -15,7 +15,7 @@ namespace LgwAppFrame.SocketHelper.Basics.Package
         /// </summary>
         /// <param name="fileSend"></param>
         /// <returns></returns>
-        internal static byte[] FileHeadEncryption(FileShare fileSend)
+        internal static byte[] FileHeadEncryption(FileState fileSend)
         {
             string fileName = CommonMethod.StringRight(fileSend.FileName, "\\");
             byte[] fileNameByte = Encoding.UTF8.GetBytes(fileName);

@@ -1,11 +1,13 @@
 ﻿using LgwAppFrame.SocketHelper.Basics.Package;
-using LgwAppFrame.SocketHelperHelper;
 using System;
 using System.Net.Sockets;
 using System.Threading;
 
 namespace LgwAppFrame.SocketHelper
 {
+    /// <summary>
+    /// 客户端
+    /// </summary>
     public class SocketClient : EngineParameter , ISocketClient
     {
 
