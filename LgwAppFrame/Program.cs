@@ -13,7 +13,7 @@ namespace LgwAppFrame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SocketClient());
+            Application.Run(new Form1());
         }
     }
 }

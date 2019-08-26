@@ -7,6 +7,7 @@ namespace LgwAppFrame.Code
 {
     class FileHelper
     {
+        #region 基础方法
         /// <summary>
         /// 程序集基目录
         /// </summary>
@@ -16,7 +17,7 @@ namespace LgwAppFrame.Code
         /// <summary>
         /// 转换相对目录为绝对目录
         /// </summary>
-        /// <param name="RelativePath"></param>
+        /// <param name="RelativePath">相对目录</param>
         /// <returns></returns>
         public static string SwitchPath(string RelativePath)
         {
@@ -27,6 +28,8 @@ namespace LgwAppFrame.Code
             return wedPath + "\\" + RelativePath;
         }
         #endregion
+        #endregion
+
         #region 检测
         #region 检测路径目录是否存在
         /// <summary>
@@ -129,9 +132,9 @@ namespace LgwAppFrame.Code
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>    
         /// <remarks>若要搜索子目录请使用重载方法.</remarks>
-        public static bool Contains(string directoryPath, string searchPattern)
+        public static bool IsContainsFile(string directoryPath, string searchPattern)
         {
-            return Contains(directoryPath, searchPattern, false);
+            return IsContainsFile(directoryPath, searchPattern, false);
         }
         #endregion
         #region 检测绝对路径目录中是否存在指定的文件
@@ -142,7 +145,7 @@ namespace LgwAppFrame.Code
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
         /// <param name="isSearchChild">是否搜索子目录</param>
-        public static bool Contains(string directoryPath, string searchPattern, bool isSearchChild)
+        public static bool IsContainsFile(string directoryPath, string searchPattern, bool isSearchChild)
         {
             try
             {

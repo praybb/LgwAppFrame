@@ -100,7 +100,7 @@ namespace LgwAppFrame.Code
 
         //根据日志类型获取日志文件名，并同时创建文件到期的时间标记
         //通过判断文件的到期时间标记将决定是否创建新文件。
-        private string GetFilename()
+        private static string GetFilename()
         {
             DateTime now = DateTime.Now;
             string format = "";
@@ -131,7 +131,7 @@ namespace LgwAppFrame.Code
         }
 
         //写入日志文本到文件的方法
-        private void FileWrite(Msg msg)
+        private static void FileWrite(Msg msg)
         {
             try
             {
@@ -163,13 +163,13 @@ namespace LgwAppFrame.Code
         }
 
         //打开文件准备写入
-        private void FileOpen()
+        private static void FileOpen()
         {
             writer = new StreamWriter(path + GetFilename(), true, Encoding.UTF8);
         }
 
         //关闭打开的日志文件
-        private void FileClose()
+        private static void FileClose()
         {
             if (writer != null)
             {
@@ -193,6 +193,17 @@ namespace LgwAppFrame.Code
                     msgs.Enqueue(msg);
                 }
             }
+        }
+        /// <summary>
+        /// 静态方法调用写入日志
+        /// </summary>
+        /// <param name="msg"></param>
+        public static void WriteLine(Msg msg)
+        {
+            if (msg != null)
+            {
+                FileWrite(msg);
+            }       
         }
 
         /// <summary>

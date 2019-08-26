@@ -33,9 +33,9 @@ namespace LgwAppFrame.Code
             inputByteArray = Encoding.Default.GetBytes(Text);
             //des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
             //des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            var keymd5 = Md5Helper.Md5(sKey).Substring(0, 8);
-            des.Key = ASCIIEncoding.ASCII.GetBytes(keymd5);
-            des.IV = ASCIIEncoding.ASCII.GetBytes(keymd5); 
+            var keymd5 = Md5Helper.GetMd5(sKey).Substring(0, 8);
+            des.Key = ASCIIEncoding.UTF8.GetBytes(keymd5);
+            des.IV = ASCIIEncoding.UTF8.GetBytes(keymd5); 
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
             cs.Write(inputByteArray, 0, inputByteArray.Length);
@@ -87,9 +87,9 @@ namespace LgwAppFrame.Code
             }
             //des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
             //des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            var keymd5 = Md5Helper.Md5(sKey).Substring(0, 8);
-            des.Key = ASCIIEncoding.ASCII.GetBytes(keymd5);
-            des.IV = ASCIIEncoding.ASCII.GetBytes(keymd5);
+            var keymd5 = Md5Helper.GetMd5(sKey).Substring(0, 8);
+            des.Key = ASCIIEncoding.UTF8.GetBytes(keymd5);
+            des.IV = ASCIIEncoding.UTF8.GetBytes(keymd5);
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
             cs.Write(inputByteArray, 0, inputByteArray.Length);
