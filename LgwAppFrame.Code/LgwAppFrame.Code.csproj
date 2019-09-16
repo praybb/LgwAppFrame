@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="Configs\Configs.cs" />
     <Compile Include="Extend\Ext.Convert.cs" />
     <Compile Include="Extend\Ext.DateTime.cs" />

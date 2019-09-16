@@ -7,8 +7,8 @@ using System.Data.Entity.ModelConfiguration;
 namespace LgwAppFrame.EFDate
 {
     public class FEDbContext :DbContext
-    {
-        public FEDbContext(): base("name=PrayDbContext")
+    {//
+        public FEDbContext(): base(LgwAppFrame.Code.Configs.GetValue("datebaser"))
         {
             this.Configuration.AutoDetectChangesEnabled = false;
             this.Configuration.ValidateOnSaveEnabled = false;

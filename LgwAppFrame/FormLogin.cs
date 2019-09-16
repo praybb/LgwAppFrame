@@ -33,6 +33,33 @@ namespace LgwAppFrame
             SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
         }
         #endregion
+        #region 登陆过程
+        private void  login()
+        {
+            try
+            {
+                if(string.IsNullOrWhiteSpace(this.tbUsername.Text))
+                {
+                    MyFuncLib.msg("登录失败  帐号不能空", "w");
+                    return;
+                }
+                if (string.IsNullOrEmpty(this.tbPassword.Text))
+                {
+                    MyFuncLib.msg("登录失败  密码不能空", "w");
+                    return;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        #endregion 
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            login();
+        }
     }
 }
 

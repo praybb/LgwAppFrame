@@ -16,12 +16,19 @@ namespace LgwAppFrame.Code
         {
             if (!FileHelper.IsExistFile(configPath))
                 throw new Exception(string.Format("配置文件不存在：{0}", configPath));
-            ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = configPath;
-            //  connectionStrings
-           
-            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
-            return config.AppSettings.Settings[key].Value.ToString().Trim();//读取配置文件key对应的值
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(configPath);
+            XmlNode xNode = xDoc.SelectSingleNode("//appSettings");
+            XmlElement xElem1 = (XmlElement)xNode.SelectSingleNode("//add[@key='" + key + "']");
+            if (xElem1 == null) return null;
+          return  xElem1.GetAttribute("value");
+
+            //  ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
+            //ecf.ExeConfigFilename = configPath;
+            ////  connectionStrings
+
+            //Configuration config = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
+            //return config.AppSettings.Settings[key].Value.ToString().Trim();//读取配置文件key对应的值
         }
         #endregion
 

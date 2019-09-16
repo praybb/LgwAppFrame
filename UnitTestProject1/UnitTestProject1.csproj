@@ -35,7 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -63,6 +72,22 @@
       <Project>{89703145-20a7-4cda-ad28-dbbfee6842e7}</Project>
       <Name>LgwAppFrame.Code</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LgwAppFrame.Domain\LgwAppFrame.Domain.csproj">
+      <Project>{13fbd2b1-eb06-4779-a58c-4d24d2025e0d}</Project>
+      <Name>LgwAppFrame.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LgwAppFrame.EFDate\LgwAppFrame.EFDate.csproj">
+      <Project>{b6753a44-f140-4963-8be9-55bd05ae34c2}</Project>
+      <Name>LgwAppFrame.EFDate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LgwAppFrame.Repository\LgwAppFrame.Repository.csproj">
+      <Project>{6eb58f1c-13b0-4449-84ff-35339ed36d48}</Project>
+      <Name>LgwAppFrame.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

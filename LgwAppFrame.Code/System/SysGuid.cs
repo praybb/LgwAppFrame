@@ -17,7 +17,10 @@ namespace LgwAppFrame.Code
         {
           return  RegHelper.GetRegistryValue("HKEY_LOCAL_MACHINE", @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\", "ProductId");
         }
-        //获取CPU序列号
+        /// <summary>
+        /// 获取CPU序列号
+        /// </summary>
+        /// <returns></returns>
         public static string GetCPUSerialNumber()
         {
             try
@@ -38,7 +41,10 @@ namespace LgwAppFrame.Code
         }
 
 
-        //获取主板序列号
+        /// <summary>
+        /// 获取主板序列号
+        /// </summary>
+        /// <returns></returns>
         public static string GetBIOSSerialNumber()
         {
             try
@@ -59,7 +65,10 @@ namespace LgwAppFrame.Code
         }
 
 
-        //获取硬盘序列号
+        /// <summary>
+        /// 获取硬盘序列号
+        /// </summary>
+        /// <returns></returns>
         public static string GetHardDiskSerialNumber()
         {
             try
@@ -80,7 +89,10 @@ namespace LgwAppFrame.Code
         }
 
 
-        //获取网卡地址
+        /// <summary>
+        /// 获取网卡地址
+        /// </summary>
+        /// <returns></returns>
         public static string GetNetCardMACAddress()
         {
             try
